@@ -1,0 +1,269 @@
+/* تحسينات التصميم العربي */
+
+/* الخطوط العربية */
+* {
+  font-family: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+/* اتجاه النصوص */
+html {
+  direction: rtl;
+  text-align: right;
+}
+
+body {
+  direction: rtl;
+  text-align: right;
+}
+
+/* تحسين المسافات للنصوص العربية */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+p {
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+/* ألوان مخصصة */
+:root {
+  --arabic-blue: #1E88E5;
+  --arabic-gold: #D4AF37;
+  --arabic-green: #2ECC71;
+  --arabic-red: #E74C3C;
+  --arabic-bg: #FAFAFA;
+}
+
+/* تحسين الأزرار */
+button {
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(30, 136, 229, 0.2) !important;
+}
+
+/* تحسين البطاقات */
+.nextui-card {
+  border-radius: 16px !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.3s ease !important;
+}
+
+.nextui-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(30, 136, 229, 0.15) !important;
+}
+
+/* تحسين الإدخالات */
+input, textarea {
+  border-radius: 10px !important;
+  font-family: 'Cairo', sans-serif !important;
+}
+
+/* تحسين الروابط */
+a {
+  color: var(--arabic-blue);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--arabic-gold);
+}
+
+/* تحسين الشريط العلوي */
+.nextui-navbar {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(30, 136, 229, 0.1);
+}
+
+/* تحسين شارة العدد */
+.nextui-badge {
+  font-family: 'Cairo', sans-serif !important;
+  font-weight: 600;
+}
+
+/* تحسين القوائم المنسدلة */
+.nextui-dropdown-menu {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* تحسين الأيقونات */
+svg {
+  transition: all 0.2s ease;
+}
+
+svg:hover {
+  transform: scale(1.1);
+}
+
+/* تحسين التدرجات اللونية */
+.gradient-text {
+  background: linear-gradient(45deg, #1E88E5, #D4AF37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* تحسين الظلال */
+.card-shadow {
+  box-shadow: 0 4px 16px rgba(30, 136, 229, 0.1);
+}
+
+.card-shadow:hover {
+  box-shadow: 0 8px 32px rgba(30, 136, 229, 0.2);
+}
+
+/* تحسين الحركات */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* تحسين الانتقالات السلسة */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* تحسين النصوص للقراءة */
+.text-readable {
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  word-spacing: 0.05em;
+}
+
+/* تحسين المساحات البيضاء */
+.container {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}
+
+/* تحسين الاستجابة */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* تحسين التباين للنصوص */
+.high-contrast {
+  color: #2C3E50;
+  font-weight: 500;
+}
+
+/* تحسين الأزرار الثانوية */
+.btn-secondary {
+  background: linear-gradient(135deg, #D4AF37 0%, #F4E4A6 100%);
+  color: #2C3E50;
+  font-weight: 600;
+}
+
+/* تحسين حالة التحميل */
+.loading {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* تحسين التمرير */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #1E88E5, #64B5F6);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1565C0;
+}
+
+/* تحسين التركيز */
+*:focus {
+  outline: 2px solid #1E88E5;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* إخفاء outline للماوس فقط */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* تحسين الشبكة */
+.grid-responsive {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+/* تحسين الصور */
+img {
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.02);
+}
+
+/* تحسين البطاقات المميزة */
+.featured-card {
+  background: linear-gradient(135deg, rgba(30, 136, 229, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
+  border: 1px solid rgba(30, 136, 229, 0.2);
+}
+
+/* تحسين الرموز التعبيرية والأرقام */
+.numbers-ar {
+  font-family: 'Cairo', sans-serif;
+  font-feature-settings: 'ss01', 'ss02';
+}
