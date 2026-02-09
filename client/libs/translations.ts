@@ -78,6 +78,8 @@ export const translations = {
     register: 'إنشاء حساب',
     logout: 'تسجيل الخروج',
     email: 'البريد الإلكتروني',
+    username: 'اسم المستخدم',
+    usernameOrEmail: 'اسم المستخدم أو البريد الإلكتروني',
     password: 'كلمة المرور',
     confirmPassword: 'تأكيد كلمة المرور',
     name: 'الاسم',
@@ -88,6 +90,7 @@ export const translations = {
     dontHaveAccount: 'ليس لديك حساب؟',
     loginHere: 'سجل دخولك هنا',
     registerHere: 'أنشئ حساب هنا',
+    passwordRequirements: 'كلمة المرور يجب أن تحتوي على 6 أحرف على الأقل، حرف كبير وصغير ورقم',
   },
 
   // الملف الشخصي

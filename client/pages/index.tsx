@@ -29,7 +29,7 @@ import carousel2 from '../public/carousel-2.jpg';
 import carousel3 from '../public/carousel-3.jpg';
 import carousel4 from '../public/carousel-4.jpg';
 import carousel5 from '../public/carousel-5.jpg';
-import carousel6 from '../public/carousel-6.jpg';
+import carousel6 from '../public/carousel-6.png';
 
 const Carousel = () => (
   <Swiper
@@ -45,10 +45,10 @@ const Carousel = () => (
       <div style={{ width: '100%', height: '41.5vw' }}>
         <NextImg
           src={carousel1}
-          layout='fill'
+          layout="fill"
           priority
-          objectFit='cover'
-          alt='Default Image'
+          objectFit="cover"
+          alt="Default Image"
         />
       </div>
     </SwiperSlide>
@@ -56,10 +56,10 @@ const Carousel = () => (
       <div style={{ width: '100%', height: '41.5vw' }}>
         <NextImg
           src={carousel2}
-          layout='fill'
+          layout="fill"
           priority
-          objectFit='cover'
-          alt='Default Image'
+          objectFit="cover"
+          alt="Default Image"
         />
       </div>
     </SwiperSlide>
@@ -67,10 +67,10 @@ const Carousel = () => (
       <div style={{ width: '100%', height: '41.5vw' }}>
         <NextImg
           src={carousel3}
-          layout='fill'
+          layout="fill"
           priority
-          objectFit='cover'
-          alt='Default Image'
+          objectFit="cover"
+          alt="Default Image"
         />
       </div>
     </SwiperSlide>
@@ -78,10 +78,10 @@ const Carousel = () => (
       <div style={{ width: '100%', height: '41.5vw' }}>
         <NextImg
           src={carousel4}
-          layout='fill'
+          layout="fill"
           priority
-          objectFit='cover'
-          alt='Default Image'
+          objectFit="cover"
+          alt="Default Image"
         />
       </div>
     </SwiperSlide>
@@ -89,10 +89,10 @@ const Carousel = () => (
       <div style={{ width: '100%', height: '41.5vw' }}>
         <NextImg
           src={carousel5}
-          layout='fill'
+          layout="fill"
           priority
-          objectFit='cover'
-          alt='Default Image'
+          objectFit="cover"
+          alt="Default Image"
         />
       </div>
     </SwiperSlide>
@@ -100,10 +100,10 @@ const Carousel = () => (
       <div style={{ width: '100%', height: '41.5vw' }}>
         <NextImg
           src={carousel6}
-          layout='fill'
+          layout="fill"
           priority
-          objectFit='cover'
-          alt='Default Image'
+          objectFit="cover"
+          alt="Default Image"
         />
       </div>
     </SwiperSlide>
@@ -128,7 +128,7 @@ export const ItemsList = ({ title, data }: ItemsListProps) => {
             textAlign: 'center',
             textGradient: '45deg, $arabicBlue -20%, $arabicGold 100%',
           }}
-          weight='bold'
+          weight="bold"
         >
           {title}
         </Text>
@@ -142,15 +142,15 @@ export const ItemsList = ({ title, data }: ItemsListProps) => {
               <Grid key={i.id} xs={6} sm={3}>
                 <Link href={`/${i.slug}`}>
                   <a style={{ width: '100%' }}>
-                    <Card variant='bordered' isHoverable>
+                    <Card variant="bordered" isHoverable>
                       <Card.Header css={{ pb: 0, minHeight: 40 }}>
                         {i.isNew && (
-                          <Badge isSquared variant='flat' color='secondary'>
+                          <Badge isSquared variant="flat" color="secondary">
                             {translations.home.new}
                           </Badge>
                         )}
                         {i.isPopular && (
-                          <Badge isSquared variant='flat' color='error'>
+                          <Badge isSquared variant="flat" color="error">
                             {translations.home.bestSeller}
                           </Badge>
                         )}
@@ -170,13 +170,13 @@ export const ItemsList = ({ title, data }: ItemsListProps) => {
                             minHeight: isXs ? 72 : 48,
                             marginBottom: isMobile ? 0 : 10,
                           }}
-                          className='line-clamp-2'
+                          className="line-clamp-2"
                         >
                           {i.name}
                         </Text>
                         <Text
                           h3
-                          color='secondary'
+                          color="secondary"
                           css={{
                             textAlign: 'center',
                             fontSize: isXs ? 24 : 16,
@@ -205,7 +205,7 @@ const Skeleton = () => {
   const isMobile = useMediaQuery('(max-width: 360px)');
 
   return (
-    <Card variant='bordered' isHoverable css={{ backgroundColor: '$accents0' }}>
+    <Card variant="bordered" isHoverable css={{ backgroundColor: '$accents0' }}>
       <Card.Header css={{ pb: 0, minHeight: 40 }}></Card.Header>
       <Card.Body css={{ py: isMobile ? '$6' : '$10' }}>
         <div
@@ -220,11 +220,11 @@ const Skeleton = () => {
             minHeight: isXs ? 72 : 48,
             marginBottom: isMobile ? 0 : 10,
           }}
-          className='line-clamp-2'
+          className="line-clamp-2"
         ></Text>
         <Text
           h3
-          color='secondary'
+          color="secondary"
           css={{
             textAlign: 'center',
             fontSize: isXs ? 24 : 16,
@@ -238,12 +238,19 @@ const Skeleton = () => {
 
 const ProductNew = () => {
   const { data: productNew } = useProducts('/new?limit=8');
-  return <ItemsList title={translations.home.newProducts} data={productNew?.items} />;
+  return (
+    <ItemsList title={translations.home.newProducts} data={productNew?.items} />
+  );
 };
 
 const ProductPopular = () => {
   const { data: productPopular } = useProducts('/popular?limit=8');
-  return <ItemsList title={translations.home.bestSeller} data={productPopular?.items} />;
+  return (
+    <ItemsList
+      title={translations.home.bestSeller}
+      data={productPopular?.items}
+    />
+  );
 };
 
 const Articles = () => {
@@ -264,7 +271,7 @@ const Articles = () => {
           textAlign: 'center',
           textGradient: '45deg, $arabicBlue -20%, $arabicGold 100%',
         }}
-        weight='bold'
+        weight="bold"
       >
         {translations.home.latestArticles}
       </Text>
@@ -275,14 +282,14 @@ const Articles = () => {
               <Grid key={i.slug} xs={12} sm={4}>
                 <Link href={`article/${i.slug}`}>
                   <a style={{ width: '100%' }}>
-                    <Card variant='bordered' isHoverable>
+                    <Card variant="bordered" isHoverable>
                       <Card.Body css={{ p: 0 }}>
                         <Card.Image
                           src={i.bannerImage.url}
-                          objectFit='cover'
-                          width='100%'
+                          objectFit="cover"
+                          width="100%"
                           height={218}
-                          alt=''
+                          alt=""
                         />
                       </Card.Body>
                       <Card.Footer
@@ -291,7 +298,7 @@ const Articles = () => {
                           alignItems: 'flex-start',
                         }}
                       >
-                        <Text h3 className='line-clamp-2'>
+                        <Text h3 className="line-clamp-2">
                           {i.title}
                         </Text>
                         <Text
@@ -312,7 +319,7 @@ const Articles = () => {
           : [...new Array(3)].map((_, i) => (
               <Grid key={i} xs={12} sm={4}>
                 <Card
-                  variant='bordered'
+                  variant="bordered"
                   isHoverable
                   css={{ backgroundColor: '$accents0' }}
                 >
@@ -344,7 +351,7 @@ const IndexPage: NextPage = () => {
     <>
       <Head>
         <title>{translations.home.title}</title>
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <UserLayout>
@@ -352,13 +359,13 @@ const IndexPage: NextPage = () => {
         <Container md>
           <Grid.Container gap={1} css={{ mt: 50 }}>
             <Grid xs={12} sm={6}>
-              <Card variant='bordered' isHoverable>
+              <Card variant="bordered" isHoverable>
                 <Card.Body css={{ p: isXs ? 50 : 30 }}>
                   <Row
-                    align='center'
+                    align="center"
                     css={{ flexDirection: isXs ? 'row' : 'column' }}
                   >
-                    <div className=''>
+                    <div className="">
                       <Text
                         h2
                         css={{ fontWeight: 500, fontSize: isXs ? 36 : 24 }}
@@ -377,24 +384,24 @@ const IndexPage: NextPage = () => {
                       </Text>
                     </div>
                     <Image
-                      width='140px'
-                      height='140px'
-                      objectFit='cover'
-                      src='/iphone-14-pro-tim.jpg'
-                      alt=''
+                      width="140px"
+                      height="140px"
+                      objectFit="cover"
+                      src="/iphone-14-pro-tim.jpg"
+                      alt=""
                     />
                   </Row>
                 </Card.Body>
               </Card>
             </Grid>
             <Grid xs={12} sm={6}>
-              <Card variant='bordered' isHoverable>
+              <Card variant="bordered" isHoverable>
                 <Card.Body css={{ p: isXs ? 50 : 30 }}>
                   <Row
-                    align='center'
+                    align="center"
                     css={{ flexDirection: isXs ? 'row' : 'column' }}
                   >
-                    <div className=''>
+                    <div className="">
                       <Text
                         h2
                         css={{ fontWeight: 500, fontSize: isXs ? 36 : 24 }}
@@ -413,11 +420,11 @@ const IndexPage: NextPage = () => {
                       </Text>
                     </div>
                     <Image
-                      width='140px'
-                      height='140px'
-                      objectFit='cover'
-                      src='/phu-kien.png'
-                      alt=''
+                      width="140px"
+                      height="140px"
+                      objectFit="cover"
+                      src="/phu-kien.png"
+                      alt=""
                     />
                   </Row>
                 </Card.Body>

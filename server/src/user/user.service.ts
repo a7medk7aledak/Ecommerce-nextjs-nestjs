@@ -30,21 +30,33 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
+    // التحقق من وجود المستخدم
     const exist = await this.usersRepository.findOneBy({
       username: createUserDto.username,
     });
-    if (exist) throw new BadRequestException('username already exist');
 
-    const hashedPassword = await bcrypt.hash(
-      createUserDto.password,
-      saltOrRounds,
-    );
-    createUserDto.password = hashedPassword;
+    if (exist) {
+      throw new BadRequestException('اسم المستخدم موجود بالفعل');
+    }
 
-    return this.usersRepository.save(createUserDto).then((res) => ({
-      statusCode: HttpStatus.CREATED,
-      message: 'Register success',
-    }));
+    try {
+      // تشفير كلمة المرور
+      const hashedPassword = await bcrypt.hash(
+        createUserDto.password,
+        saltOrRounds,
+      );
+      createUserDto.password = hashedPassword;
+
+      // حفظ المستخدم
+      await this.usersRepository.save(createUserDto);
+
+      return {
+        statusCode: HttpStatus.CREATED,
+        message: 'تم إنشاء الحساب بنجاح',
+      };
+    } catch (error) {
+      throw new BadRequestException('حدث خطأ أثناء إنشاء الحساب');
+    }
   }
 
   async createEmployee(createEmployeeDto: CreateEmployeeDto) {
@@ -91,7 +103,7 @@ export class UserService {
   async findOne(id: number): Promise<User> {
     const exist = await this.usersRepository.findOneBy({ id });
     if (!exist) {
-      throw new NotFoundException('User not found.');
+      throw new NotFoundException('المستخدم غير موجود');
     }
 
     return exist;
@@ -100,7 +112,7 @@ export class UserService {
   async findByName(username: string): Promise<User> {
     const exist = await this.usersRepository.findOneBy({ username });
     if (!exist) {
-      throw new NotFoundException('User not found.');
+      throw new NotFoundException('المستخدم غير موجود');
     }
 
     return exist;
@@ -138,29 +150,38 @@ export class UserService {
 
   async updatePassword(updatePasswordDto: UpdatePasswordDto) {
     const user = await this.findOne(updatePasswordDto.userId);
+
+    // التحقق من كلمة المرور القديمة
     const result = await bcrypt.compare(
       updatePasswordDto.oldPass,
       user.password,
     );
+
     if (!result) {
-      throw new BadRequestException('Password not exactly');
+      throw new BadRequestException('كلمة المرور القديمة غير صحيحة');
     }
 
+    // التحقق من تطابق كلمة المرور الجديدة
     if (updatePasswordDto.newPass !== updatePasswordDto.confirmPass) {
-      throw new BadRequestException('Confirm password not equal new password');
+      throw new BadRequestException(
+        'كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقتين',
+      );
     }
 
+    // تشفير كلمة المرور الجديدة
     const hashedPassword = await bcrypt.hash(
       updatePasswordDto.newPass,
       saltOrRounds,
     );
 
-    return this.usersRepository
-      .update(updatePasswordDto.userId, { password: hashedPassword })
-      .then((res) => ({
-        statusCode: HttpStatus.OK,
-        message: 'Update password success',
-      }));
+    await this.usersRepository.update(updatePasswordDto.userId, {
+      password: hashedPassword,
+    });
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'تم تحديث كلمة المرور بنجاح',
+    };
   }
 
   async remove(id: number) {

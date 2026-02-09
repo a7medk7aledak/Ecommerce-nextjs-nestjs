@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { User } from './../user/entities/user.entity';
@@ -12,13 +12,27 @@ export class AuthService {
   ) {}
 
   async validateUser(username: string, pass: string): Promise<any> {
-    const user = await this.userService.findByName(username);
+    try {
+      const user = await this.userService.findByName(username);
 
-    const result = await bcrypt.compare(pass, user.password);
-    if (!result) return null;
+      if (!user) {
+        throw new UnauthorizedException('اسم المستخدم أو كلمة المرور غير صحيحة');
+      }
 
-    const { password, ...res } = user;
-    return res;
+      const result = await bcrypt.compare(pass, user.password);
+
+      if (!result) {
+        throw new UnauthorizedException('اسم المستخدم أو كلمة المرور غير صحيحة');
+      }
+
+      const { password, ...res } = user;
+      return res;
+    } catch (error) {
+      if (error instanceof UnauthorizedException) {
+        throw error;
+      }
+      throw new UnauthorizedException('اسم المستخدم أو كلمة المرور غير صحيحة');
+    }
   }
 
   async login(user: User) {

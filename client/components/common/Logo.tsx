@@ -8,9 +8,9 @@ export default function Logo({ url }: { url: string }) {
         <img
           width={120}
           height={70}
-          src='/logo.jpg'
-          alt='Logo image'
-          className='logo'
+          src="/logo.png"
+          alt="Logo image"
+          className="logo"
         />
       </Link>
       <style jsx>{`
