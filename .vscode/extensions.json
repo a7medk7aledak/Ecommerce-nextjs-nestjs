@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "prisma.prisma",
+    "ms-azuretools.vscode-docker",
+    "mikestead.dotenv",
+    "yzhang.markdown-all-in-one"
+  ],
+  "unwantedRecommendations": []
+}
